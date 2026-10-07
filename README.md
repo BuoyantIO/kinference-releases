@@ -12,12 +12,15 @@ This repository holds no source code and does not track issues.
 
 ## Install kinfctl
 
-Pick the binary for your platform from the release page: `darwin-arm64`
-(Apple Silicon) or `linux-amd64`. A `.sha256` sits next to each.
+Binaries are built for macOS on Apple Silicon (`darwin-arm64`) and Linux on
+x86_64 (`linux-amd64`); a `.sha256` sits next to each. Set `version` to the
+release you want and the snippet picks the right one:
 
 ```sh
 version=<version>
-curl -fsSL -o kinfctl https://github.com/BuoyantIO/kinference-releases/releases/download/v$version/kinfctl-$version-darwin-arm64
+os=$(uname -s | tr '[:upper:]' '[:lower:]')
+arch=$(uname -m | sed 's/x86_64/amd64/; s/aarch64/arm64/')
+curl -fsSL -o kinfctl https://github.com/BuoyantIO/kinference-releases/releases/download/v$version/kinfctl-$version-$os-$arch
 chmod +x kinfctl
 sudo mv kinfctl /usr/local/bin/
 ```
