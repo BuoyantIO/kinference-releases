@@ -13,8 +13,22 @@ This repository holds no source code and does not track issues.
 ## Install kinfctl
 
 Binaries are built for macOS on Apple Silicon (`darwin-arm64`) and Linux on
-x86_64 (`linux-amd64`); a `.sha256` sits next to each. Set `version` to the
-release you want and the snippet picks the right one:
+x86_64 (`linux-amd64`); a `.sha256` sits next to each. The installer picks
+the right one for the newest release, checks it, and puts it in
+`~/.kinference/bin`:
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/BuoyantIO/kinference-releases/main/install.sh | sh
+```
+
+Set `KINFCTL_VERSION` to pin a release and `KINFCTL_INSTALL_DIR` to install
+elsewhere:
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/BuoyantIO/kinference-releases/main/install.sh | KINFCTL_VERSION=<version> sh
+```
+
+Or by hand:
 
 ```sh
 version=<version>
